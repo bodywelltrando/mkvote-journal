@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mk体育 · 杂志专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f5f9fc;
+      color: #1e2b3c;
+      line-height: 1.6;
+      padding: 0 1.25rem;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+
+    /* 首页横幅 — 杂志封面感 */
+    .hero {
+      background: linear-gradient(145deg, #d9f0ec 0%, #bbdfd9 100%);
+      border-radius: 2rem;
+      padding: 3rem 2rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(40, 94, 82, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .hero::after {
+      content: "✦";
+      font-size: 10rem;
+      color: rgba(60, 130, 120, 0.06);
+      position: absolute;
+      right: -1.5rem;
+      bottom: -2rem;
+      pointer-events: none;
+      font-weight: 300;
+    }
+
+    .hero-tag {
+      background: #1b4e47;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+      width: fit-content;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 650;
+      line-height: 1.2;
+      color: #0a2a27;
+      max-width: 70%;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #204a43;
+      max-width: 65%;
+      margin-top: 0.2rem;
+    }
+
+    /* 背景说明 — 网格卡片 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 30, 30, 0.04);
+      border: 1px solid #dae9e6;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      background: #f5fffc;
+      border-color: #9fcac2;
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #11433c;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #2a4d46;
+    }
+
+    /* 三段自然介绍 — 杂志段落 */
+    .featured-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin: 3.5rem 0;
+    }
+
+    .text-block {
+      border-left: 4px solid #5fa89b;
+      padding-left: 1.5rem;
+    }
+
+    .text-block h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #123e38;
+      margin-bottom: 0.6rem;
+    }
+
+    .text-block p {
+      font-size: 1rem;
+      color: #1e3e39;
+      max-width: 85%;
+    }
+
+    .highlight-link {
+      background: #e4f3ef;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      color: #0b463d;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid #7bb5aa;
+      transition: background 0.15s;
+    }
+
+    .highlight-link:hover {
+      background: #c6e3db;
+    }
+
+    /* 页尾访问提示 */
+    .footer-note {
+      margin-top: 3.5rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid #c9dfda;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-note p {
+      color: #305f58;
+      font-size: 0.98rem;
+      max-width: 500px;
+    }
+
+    .footer-note .site-ref {
+      margin-top: 0.8rem;
+      font-size: 1rem;
+    }
+
+    .site-ref a {
+      color: #0a4b41;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid #7abbae;
+      padding-bottom: 2px;
+    }
+
+    .site-ref a:hover {
+      color: #083d35;
+      border-bottom-color: #3d887b;
+    }
+
+    .small-faq {
+      margin: 2rem 0 0;
+      background: #edf7f4;
+      padding: 1.5rem 2rem;
+      border-radius: 2rem;
+    }
+
+    .small-faq details {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .small-faq summary {
+      font-weight: 600;
+      color: #1b524a;
+      cursor: pointer;
+    }
+
+    .small-faq p {
+      color: #1d3f3a;
+      margin-top: 0.4rem;
+      padding-left: 0.2rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      body {
+        padding: 0 1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+        max-width: 100%;
+      }
+
+      .hero p {
+        max-width: 100%;
+        font-size: 0.95rem;
+      }
+
+      .text-block p {
+        max-width: 100%;
+      }
+
+      .hero {
+        padding: 2rem 1.5rem;
+      }
+
+      .grid-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .small-faq {
+        padding: 1.2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 首页横幅 hero -->
+    <div class="hero">
+      <span class="hero-tag">· 杂志专题 ·</span>
+      <h1>mk体育：日常的运动入口</h1>
+      <p>一个稳定的起点，让体育信息与生活节奏自然连接。</p>
+    </div>
+
+    <!-- 网格卡片 — 背景说明 -->
+    <div class="grid-cards">
+      <div class="card">
+        <div class="card-icon">🌱</div>
+        <h3>稳定的信息基座</h3>
+        <p>不追求突发热点轰炸，而是把体育赛程、队伍动态整理成干净的结构，每次打开都心里有数。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>移动端优先</h3>
+        <p>无论通勤还是午休，卡片式布局和克制配色让浏览不费力，像翻阅一本轻巧的运动手册。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>蓝绿调 · 低负担</h3>
+        <p>从视觉上降低焦虑，页面用蓝绿色点缀，没有刺眼广告和跳转陷阱，回归阅读本质。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <h3>内容与节奏</h3>
+        <p>每段介绍都从日常场景出发，不堆砌术语，只聊运动生活里真正用得上的信息片段。</p>
+      </div>
+    </div>
+
+    <!-- 三段自然介绍 杂志段落 -->
+    <div class="featured-text">
+      <div class="text-block">
+        <h2>为什么需要一个稳定入口？</h2>
+        <p>
+          现在的体育消息散落在各个平台，刷新之后就不见了。比起追逐即时推送，不如找一个像 <a href="https://mkvote.com.cn" class="highlight-link">mk体育</a> 这样能安静待着的页面。不需要每次重新搜索，打开就是自己关注的联赛、队伍、日程——像家附近那个总留着灯的小球场。
+        </p>
+      </div>
+
+      <div class="text-block">
+        <h2>从页面说明开始</h2>
+        <p>
+          mk体育 并不试图取代专业数据站，它更像一本个人向的运动笔记。首页聚合了近期重要赛事、球队近况与简易日历。你可以把它设成浏览器常驻标签，或者偶尔点进来看看。没有强制推送，只有你主动想了解时，它就在那里。
+        </p>
+      </div>
+
+      <div class="text-block">
+        <h2>场景：下班后的十分钟</h2>
+        <p>
+          结束一天的工作，靠在沙发上打开 <a href="https://mkvote.com.cn" class="highlight-link">mk体育</a>，快速扫一眼明早要追的季后赛比分，或者周末主场的天气预告。绿白色的界面不会增加视觉疲劳，信息量刚好够你决定晚上要不要爬起来看直播。
+        </p>
+      </div>
+    </div>
+
+    <!-- 简短的 FAQ 摘要（杂志感） -->
+    <div class="small-faq">
+      <details>
+        <summary>mk体育 适合哪些运动关注者？</summary>
+        <p>无论是足球、篮球、网球还是田径爱好者，都能找到对应的赛程卡片和队伍简报。页面内容以主流赛事为主，同时保留扩展空间。</p>
+      </details>
+      <details>
+        <summary>内容更新频率如何？</summary>
+        <p>保持每周数次内容更新，重点覆盖联赛周末和杯赛阶段。日常有微小调整，不会突然刷屏，适合细水长流的阅读节奏。</p>
+      </details>
+      <details>
+        <summary>移动端体验有什么特别之处？</summary>
+        <p>卡片自适应屏幕，按钮和链接间距舒适，单手操作友好。没有悬浮窗或复杂菜单，滚动即阅。</p>
+      </details>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-note">
+      <p>如果你也在找一个干净、稳定的体育信息角落，不妨把下面这个链接存下来。</p>
+      <div class="site-ref">
+        <a href="https://mkvote.com.cn">mk体育</a> · 日常运动阅读页
+      </div>
+      <p style="margin-top: 1.2rem; font-size: 0.85rem; color: #57857b;">—— 杂志式呈现，不打扰，有质感。</p>
+    </div>
+  </div>
+</body>
+</html>
